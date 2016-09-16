@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="process.php" method="POST" id="myForm">
+<p>Click the button to get your coordinates.</p>
+Latitude:<input name="field1" type="text" id="lat" readonly/>
+Longitude:<input name="field2" type="text" id="long" readonly/>
+<input type="button" value="Find Geopoints" onclick="getLocation()"/>
+</form>
+<script>
+var lat=document.getElementById("lat");
+var lon=document.getElementById("long");
+var coords = {lat: "", lon: ""};
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(showPosition);
+		
+    } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";}
+    }
+    
+function showPosition(position) {
+  coords.lat = position.coords.latitude;
+   coords.lon = position.coords.longitude;
+   lat.value=coords.lat;
+   lon.value=coords.lon;
+   document.getElementById("myForm").submit();
+}
+</script>
+
+</body>
+</html>
